@@ -1,0 +1,21 @@
+# environments
+.env
+.venv/
+env/
+
+# python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# audio remnants
+*.mp3
+
+# local state
+memory.json
+
+# os files
+Thumbs.db
+.DS_Store
+.vscode/
+.idea/
