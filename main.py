@@ -79,6 +79,7 @@ def ai_loop(ui=None): # main processor
         except: pass
 
 if __name__ == "__main__": # entry point
-    # ui = Nexusv7(on_cmd=lambda c: do_cmd(c, ui)) # unlinked for now
-    # sys.stdout = ui # unlinked for now
-    ai_loop() # start direct brain
+    ui = Nexusv7(on_cmd=lambda c: do_cmd(c, ui)) # hud sync
+    sys.stdout = ui # terminal redirect
+    threading.Thread(target=ai_loop, args=(ui,), daemon=True).start() # start brain
+    ui.mainloop() # start hud

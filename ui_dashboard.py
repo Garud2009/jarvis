@@ -13,7 +13,7 @@ class Nexusv7(ctk.CTk):
         ctk.set_appearance_mode("dark") # force dark
         
         self.on_cmd = on_cmd # event hook
-        self.accent = "#00FF88" # neon accent
+        self.accent = "#00D4FF" # arc reactor blue
         
         self.grid_columnconfigure(0, weight=1, minsize=220) # side bar
         self.grid_columnconfigure(1, weight=4) # main hub
@@ -59,14 +59,14 @@ class Nexusv7(ctk.CTk):
         self.entry = ctk.CTkEntry(in_f, placeholder_text="Neural input...", height=40, font=("Consolas", 13), fg_color="#0C0C0C")
         self.entry.pack(side="left", fill="x", expand=True, padx=(0, 10))
         self.entry.bind("<Return>", lambda e: self.fire()) # bind enter
-        ctk.CTkButton(in_f, text="EXEC", width=80, height=40, fg_color=self.accent, text_color="#000", command=self.fire).pack(side="right")
+        ctk.CTkButton(in_f, text="SYNC", width=80, height=40, fg_color=self.accent, text_color="#000", font=("Consolas", 12, "bold"), command=self.fire).pack(side="right")
 
         act_f = ctk.CTkFrame(self.hub, fg_color="transparent")
         act_f.grid(row=3, column=0, sticky="ew", padx=20, pady=(0, 20)) # actions
         for t, c in [("LOCK", "lock pc"), ("SNAP", "screenshot"), ("NEWS", "news"), ("WEATHER", "weather")]:
             ctk.CTkButton(act_f, text=t, width=70, height=28, fg_color="#121212", font=("Consolas", 9), command=lambda x=c: self.btn_act(x)).pack(side="left", padx=5)
         
-        ctk.CTkButton(act_f, text="RELOAD", width=70, height=28, fg_color="#1A1A1A", text_color="#00FFCC", font=("Consolas", 9, "bold"), command=self.reload_cfg).pack(side="left", padx=20)
+        ctk.CTkButton(act_f, text="RELOAD", width=70, height=28, fg_color="#1A1A1A", text_color=self.accent, font=("Consolas", 9, "bold"), command=self.reload_cfg).pack(side="left", padx=20)
         ctk.CTkButton(act_f, text="POWER", width=70, height=28, fg_color="#330000", text_color="#FF4444", font=("Consolas", 9, "bold"), command=lambda: self.btn_act("shutdown")).pack(side="right", padx=5)
 
         threading.Thread(target=self.vitals_loop, daemon=True).start() # start loop
